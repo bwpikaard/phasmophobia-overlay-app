@@ -1,0 +1,73 @@
+{
+    "name": "overlay",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "postinstall": "electron-builder install-app-deps",
+        "lint": "eslint src",
+        "dev": "electron-webpack dev",
+        "compile": "electron-webpack",
+        "dist": "yarn compile && electron-builder --win --x64 --ia32",
+        "dist:32": "yarn compile && electron-builder --win --ia32",
+        "dist:64": "yarn compile && electron-builder --win --x64",
+        "dist:linux": "yarn compile && electron-builder --linux --x64",
+        "publish": "yarn compile && electron-builder --win --x64 --ia32 --publish always ",
+        "publish:linux": "yarn compile && electron-builder --x64 --ia32 --linux --publish always"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "gypfile": true,
+    "engines": {
+        "node": ">= 12"
+    },
+    "dependencies": {
+        "electron-overlay-window": "^2.0.1",
+        "electron-updater": "^4.6.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "socket.io-client": "latest",
+        "source-map-support": "^0.5.21",
+        "ws": "^8.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.7",
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.11",
+        "@types/ws": "^8.2.2",
+        "@typescript-eslint/eslint-plugin": "^5.9.0",
+        "@typescript-eslint/parser": "^5.9.0",
+        "electron": "^16.0.6",
+        "electron-builder": "^22.14.5",
+        "electron-webpack": "^2.8.2",
+        "electron-webpack-ts": "^4.0.1",
+        "eslint": "^8.6.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "ts-node": "^10.4.0",
+        "typescript": "^3.9.10",
+        "webpack": "^4.46.0",
+        "webpack-dev-server": "^4.7.2"
+    },
+    "build": {
+        "appId": "com.pikaard.phasmoverlay",
+        "productName": "Phasmophobia Overlay",
+        "copyright": "Copyright © 2022 Bryan Pikaard",
+        "directories": {
+            "output": "dist",
+            "buildResources": "resources"
+        },
+        "files": {
+            "from": ".",
+            "filter": [
+                "package.json",
+                "app"
+            ]
+        },
+        "extraResources": [
+            "./resources/**"
+        ]
+    }
+}
